@@ -13,8 +13,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mojaklasa.cpp
+        mojaklasa.cpp \
+    thread1.cpp
 
-HEADERS  += mojaklasa.h
+HEADERS  += mojaklasa.h \
+    thread1.h
 
 FORMS    += mojaklasa.ui
