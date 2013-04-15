@@ -25,16 +25,18 @@ public:
 
     void run();
     bool Stop;
-    void listuj_kat(QString nazwa);
-    QList<szukanie> listuj(QString nazwa);
+    //void listuj_kat(QString nazwa);
+    //void listuj(QString nazwa);
+    void tworzListePlikow(QDir dir);
 
     void szukaj_duplikatow(QList<szukanie> listaPlikow);
 
     QList<QString>sciezki;
     bool szukaj_w_podk;
+    QList<szukanie> lista_plikow;
 
 signals:
-    void wyszukiwanie(QTreeWidgetItem*);
+    void wyszukiwanie(QTreeWidgetItem*,int);
     void progress(int p,int max);
 public slots:
     void ustawParametry(bool podKatalog, QList<QString> sciezkiPierwotne);

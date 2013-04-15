@@ -19,23 +19,10 @@ public:
     explicit mojaklasa(QWidget *parent = 0);
     ~mojaklasa();
    thread1 *watek;
-    //xtern QList<QString> listaSciezek;
-    //void skanuj(QList<QString> listaSciezek);
-QList<QString> listaSciezek;
 
 
 private:
     Ui::mojaklasa *ui;
-
-  //  QList<QString> listaSciezek;
-/*    struct szukanie
-    {
-        QString sciezka;
-        QString nazwa;
-        int rozmiar;
-    };*/
-   // QList<szukanie> lista_plikow;
-
 
     
 private slots:
@@ -43,14 +30,13 @@ private slots:
 
     void on_skanuj_clicked();
 
- //   void listuj(QString nazwa);
-//   void listuj_kat(QString nazwa);
-//    void szukaj_duplikatow(QList<szukanie> listaPlikow);
 
+    void on_usun_clicked();
 
-   // void addChildren(QTreeWidgetItem* ,QString);
+    void on_Anuluj_clicked();
+
 public slots:
-   void listowanie(QTreeWidgetItem* item);
+   void listowanie(QTreeWidgetItem* item,int znaleziono);
    void onProgress(int p, int max);
 signals:
    void wyslijParametry(bool podKatalog, QList<QString> sciezkiPierwotne);
