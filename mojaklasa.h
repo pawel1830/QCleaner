@@ -39,7 +39,6 @@ private slots:
     void usunItem();
     //void Menu(const QPoint &pos);
 
-    void on_pushButton_2_clicked();
     void przejdzFolder();
 
     void on_usunWszystko_clicked();
