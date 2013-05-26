@@ -23,6 +23,8 @@ public:
 
 private:
     Ui::mojaklasa *ui;
+    QAction *rightClickMenu;
+    QMenu *menu;
 
     
 private slots:
@@ -34,10 +36,18 @@ private slots:
     void on_usun_clicked();
 
     void on_Anuluj_clicked();
+    void usunItem();
+    //void Menu(const QPoint &pos);
+
+    void on_pushButton_2_clicked();
+    void przejdzFolder();
+
+    void on_usunWszystko_clicked();
 
 public slots:
    void listowanie(QTreeWidgetItem* item,int znaleziono);
    void onProgress(int p, int max);
+   void zakonczSzukanie(QString koniec);
 signals:
    void wyslijParametry(bool podKatalog, QList<QString> sciezkiPierwotne);
 };

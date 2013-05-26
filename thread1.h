@@ -17,7 +17,7 @@ public:
     {
         QString sciezka;
         QString nazwa;
-        int rozmiar;
+        double rozmiar;
     };
     QList<szukanie> szukanieFaza1(
             //*QList<QString> sciezkiKatalogow,
@@ -38,6 +38,7 @@ public:
 signals:
     void wyszukiwanie(QTreeWidgetItem*,int);
     void progress(int p,int max);
+    void zakonczSzukanie(QString);
 public slots:
     void ustawParametry(bool podKatalog, QList<QString> sciezkiPierwotne);
     //QList<szukanie> szukanieFaza1(QList<QString> sciezkiKatalogow, bool podkatalog);

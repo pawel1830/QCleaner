@@ -48,7 +48,41 @@ void thread1::tworzListePlikow(QDir dir)
                     //emit progress(i,list.size());
             }
 }
+QString convertSize(double size)
+{
+    QString wynik;
+   double typ = 1000;
+    int kilobyte = typ;
 
+
+        double megabyte = kilobyte * typ;
+        double gigabyte = megabyte * typ;
+        double terabyte = gigabyte * typ;
+
+
+        if ((size >= 0) && (size < kilobyte)) {
+            wynik = QString::number(size) + 'B';
+
+        } else if ((size >= kilobyte) && (size < megabyte)) {
+            wynik = (QString::number(size/kilobyte,'f',2))+"KB";
+
+
+        } else if ((size >= megabyte) && (size < gigabyte)) {
+            wynik = (QString::number(size/megabyte,'f',2))+"MB";
+
+        } else if ((size >= gigabyte) && (size < terabyte)) {
+
+            wynik = (QString::number(size/gigabyte,'f',2))+"GB";
+
+        } else if (size >= terabyte) {
+
+             wynik = (QString::number(size/terabyte,'f',2))+"TB";
+
+        } else {
+            wynik = QString::number(size) + 'B';
+}
+        return wynik;
+}
 void thread1::szukaj_duplikatow(QList<szukanie> listaPlikow)
 {
     int liczbaZnalezionych = 0;
@@ -80,7 +114,8 @@ void thread1::szukaj_duplikatow(QList<szukanie> listaPlikow)
                 item->setText(0,listaPlikow[a].nazwa);
                //item->setText(2,lista_plikow.value(a).rozmiar);
               item->setText(1,listaPlikow[a].sciezka);
-              item->setText(2,QString::number(listaPlikow[a].rozmiar));
+              item->setText(2,convertSize(listaPlikow[a].rozmiar));
+              //item->setText(2,QString::number(listaPlikow[a].rozmiar));
               listaPlikow.removeAt(a);
               emit wyszukiwanie(item,liczbaZnalezionych);
               //qDebug() << "znaleziono";
@@ -96,7 +131,7 @@ void thread1::szukaj_duplikatow(QList<szukanie> listaPlikow)
         QTreeWidgetItem* item2 = new QTreeWidgetItem();
           item2->setText(0,listaPlikow[i].nazwa);
           item2->setText(1,listaPlikow[i].sciezka);
-          item2->setText(2,QString::number(listaPlikow[i].rozmiar));
+          item2->setText(2,convertSize(listaPlikow[i].rozmiar));
          // ui->listaplikow->addTopLevelItem(item2);
           liczbaZnalezionych++;
           emit wyszukiwanie(item2,liczbaZnalezionych);
@@ -107,6 +142,7 @@ void thread1::szukaj_duplikatow(QList<szukanie> listaPlikow)
 
     }
     emit progress(i,i);
+    emit zakonczSzukanie("Zakończono..");
 
 }
 void thread1::run()
