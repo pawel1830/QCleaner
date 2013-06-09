@@ -99,23 +99,6 @@
      <number>-1</number>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox">
-    <property name="geometry">
-     <rect>
-      <x>590</x>
-      <y>430</y>
-      <width>141</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>szukaj 
-w podkatalogach</string>
-    </property>
-    <property name="checked">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
@@ -209,6 +192,23 @@ w podkatalogach</string>
      <string>Zaznacz wszystko</string>
     </property>
    </widget>
+   <widget class="QToolButton" name="settings">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>24</y>
+      <width>28</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="icons.qrc">
+      <normaloff>:/icons/settings.png</normaloff>:/icons/settings.png</iconset>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -258,6 +258,8 @@ w podkatalogach</string>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

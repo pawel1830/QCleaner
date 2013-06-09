@@ -7,27 +7,30 @@
 #include <QTreeWidgetItem>
 #include <QMessageBox>
  #include <QDesktopServices>
+#include "settings.h"
 
-
+Ustawienia *settings_window;
 mojaklasa::mojaklasa(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::mojaklasa)
 {
     ui->setupUi(this);
     watek = new thread1;
+
+    settings_window = new Ustawienia;
     connect(watek,SIGNAL(wyszukiwanie(QTreeWidgetItem*,int)),this,SLOT(listowanie(QTreeWidgetItem*,int)));
     connect(watek,SIGNAL(progress(int,int)),this,SLOT(onProgress(int,int)));
     connect(watek,SIGNAL(zakonczSzukanie(QString)),this,SLOT(zakonczSzukanie(QString)));
-    connect(this,SIGNAL(wyslijParametry(bool,QList<QString>)),watek,SLOT(ustawParametry(bool,QList<QString>)));
+    connect(this,SIGNAL(wyslijParametry(QList<QString>)),watek,SLOT(ustawParametry(QList<QString>)));
     connect(ui->pushButton_2,SIGNAL(clicked()),ui->listaDuplikatow,SLOT(selectAll()));
-
+    connect(settings_window,SIGNAL(glowne_okno_pokaz(bool)),this,SLOT(setEnabled(bool)));
 
     ui->usunWszystko->setHidden(true);
     ui->pushButton_2->setHidden(true);
     ui->listaDuplikatow->setContextMenuPolicy(Qt::ActionsContextMenu);
     ui->listaDuplikatow->addAction(ui->actionUsun);
     ui->listaDuplikatow->addAction(ui->actionPrzejdz);
-    connect(ui->actionUsun,SIGNAL(triggered()),SLOT(usunItem()));
+    connect(ui->actionUsun,SIGNAL(triggered()),SLOT(menuListyPlikow()));
     connect(ui->actionPrzejdz,SIGNAL(triggered()),this,SLOT(przejdzFolder()));
 
 
@@ -35,6 +38,14 @@ mojaklasa::mojaklasa(QWidget *parent) :
     ui->Anuluj->setHidden(true);
     ui->statusBar->showMessage(tr("Uruchomiono"),1500);
     //mojaklasa.moveToThread(watek);
+    QSettings settings("Qszukacz", "config");
+
+     settings.beginGroup("configuration");
+     if (settings.value("sciezka_szukania").toString().isEmpty()==false)
+     {
+        QString katalog = settings.value("sciezka_szukania").toString();
+        ui->listWidget->addItem(katalog);
+     }
 }
 
 mojaklasa::~mojaklasa()
@@ -42,9 +53,21 @@ mojaklasa::~mojaklasa()
     delete ui;
 }
 
-void mojaklasa::usunItem()
+void mojaklasa::menuListyPlikow()
 {
     int zaznDoUsun = ui->listaDuplikatow->selectedItems().size();
+   /* QFile file;
+
+    file.setFileName(ui->listaDuplikatow->selectedItems().first()->text(1));
+    if (file.remove()== true)
+    {
+
+        QTreeWidgetItem *item = ui->listaDuplikatow->currentItem();
+        int i = ui->listaDuplikatow->indexOfTopLevelItem(item);
+        ui->listaDuplikatow->takeTopLevelItem(i);
+           QMessageBox::information(this,"Usuwanie",QString::number(zaznDoUsun));
+
+    }*/
 
 
     if (zaznDoUsun>0)
@@ -77,8 +100,13 @@ void mojaklasa::usunItem()
                 if (file.remove()== true)
                 {
 
+                    //QTreeWidgetItem *item = ui->listaDuplikatow->currentItem();
+                    //QMessageBox::information(this,"Usuwanie",item->text(1));
                     int index = ui->listaDuplikatow->indexOfTopLevelItem(item);
+                    //QMessageBox::information(this,"Usuwanie",QString::number(index));
                     ui->listaDuplikatow->takeTopLevelItem(index);
+                    //    QMessageBox::information(this,"take",QString::number(cos));
+                    //else QMessageBox::information(this,"Usuwanie","nie posżło");
                 }
                 else
                     if (file.RemoveError)
@@ -100,7 +128,9 @@ void mojaklasa::przejdzFolder()
         path.append(list1.at(i)+"/");
     //QString run= program+path;
     QDesktopServices::openUrl(QUrl("file:///" + path));
-
+    //ui->statusBar->showMessage(run);
+    //QProcess *executable = new QProcess(this);
+    //executable->execute(run);
 }
 
 void mojaklasa::on_pushButton_clicked()
@@ -151,7 +181,7 @@ void mojaklasa::on_skanuj_clicked()
             //qDebug() << ui->listWidget->item(i)->text();
         }
 
-        mojaklasa::wyslijParametry(ui->checkBox->isChecked(),listaaa);
+        mojaklasa::wyslijParametry(listaaa);
         watek->start();
         ui->listaDuplikatow->setSortingEnabled(true);
         ui->listaDuplikatow->sortByColumn(1,Qt::AscendingOrder);
@@ -209,9 +239,10 @@ void mojaklasa::zakonczSzukanie(QString koniec)
 }
 
 
-
-void mojaklasa::on_usunWszystko_clicked()
+void mojaklasa::on_settings_clicked()
 {
-    ui->listaDuplikatow->selectAll();
-    usunItem();
+    //Ustawienia *settings_window = new Ustawienia;
+    mojaklasa::setEnabled(false);
+    settings_window->show();
+
 }

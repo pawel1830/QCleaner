@@ -14,9 +14,15 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mojaklasa.cpp \
-    thread1.cpp
+    thread1.cpp \
+	settings.cpp
 
 HEADERS  += mojaklasa.h \
-    thread1.h
+    thread1.h \
+	settings.h
 
-FORMS    += mojaklasa.ui
+FORMS    += mojaklasa.ui \
+	settings.ui
+
+RESOURCES += \
+    icons.qrc

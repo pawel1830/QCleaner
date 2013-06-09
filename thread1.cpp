@@ -3,6 +3,7 @@
 #include <QDebug>
 #include <QTreeWidgetItem>
 #include "mojaklasa.h"
+#include <QMessageBox>
 
 
 
@@ -10,10 +11,22 @@ thread1::thread1(QObject *parent) :QThread(parent)
 {
 
 }
-void thread1::ustawParametry(bool podKatalog, QList<QString> sciezkiPierwotne)
+void thread1::ustawParametry(QList<QString> sciezkiPierwotne)
 {
+    QSettings settings("Qszukacz", "config");
+
+     settings.beginGroup("configuration");
+
+    szukaj_w_podk = settings.value("szuk_w_podk").toBool();
+    czy_zapisac_liste = settings.value("lista_plikow").toBool();
+     if (czy_zapisac_liste==true)
+        zapis_listy = settings.value("sciezka_zapisu_listy").toString();
+     szukaj_po_rozmiar = settings.value("rozmiar").toBool();
+     szukaj_po_nazwa = settings.value("nazwa").toBool();
+
+     settings.endGroup();
     sciezki.operator =(sciezkiPierwotne);
-    szukaj_w_podk = podKatalog;
+
 }
 
 /*
@@ -24,6 +37,21 @@ void thread1::ustawParametry(bool podKatalog, QList<QString> sciezkiPierwotne)
         dir.setSorting(QDir::Size | QDir::Reversed);
 
    */
+void thread1::zapis_do_pliku(QString linia)
+{
+    if (zapis_listy.isEmpty()==false)
+    {
+        QFile file(zapis_listy.operator +=("/lista plikow.txt"));
+         if (file.open(QIODevice::WriteOnly | QIODevice::Text))
+         {
+             //QMessageBox::warning(thread1,"Błąd - Zapis nie udany","Wybierz jakieś kryterium wyszukiwania!");
+             QTextStream out(&file);
+             out << linia <<  "\n";
+            }
+
+         file.close();
+    }
+}
 
 void thread1::tworzListePlikow(QDir dir)
 {
@@ -83,9 +111,17 @@ QString convertSize(double size)
 }
         return wynik;
 }
+
+
 void thread1::szukaj_duplikatow(QList<szukanie> listaPlikow)
 {
     int liczbaZnalezionych = 0;
+    QFile file(zapis_listy);
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+            return;
+
+        QTextStream out(&file);
+
 
     int i=0;
     //qDebug() << listaPlikow.size();
@@ -104,7 +140,72 @@ void thread1::szukaj_duplikatow(QList<szukanie> listaPlikow)
             //qDebug() << i << " & " << a << " & " << pierwszyRaz;
 
             //if (listaPlikow.operator [](i).nazwa == listaPlikow.operator [](a).nazwa)
-            if (wzor.nazwa == listaPlikow.at(a).nazwa)
+           // if (czy_zapisac_liste == true)
+            //{
+              //  zapis_do_pliku(listaPlikow[a].sciezka);
+            //}
+
+            out << listaPlikow[a].sciezka << "\n";
+            if (szukaj_po_nazwa==true && szukaj_po_rozmiar==true)
+            {
+                if (wzor.nazwa == listaPlikow.at(a).nazwa && wzor.rozmiar == listaPlikow.at(a).rozmiar)
+                {
+                    liczbaZnalezionych++;
+
+                    QTreeWidgetItem* item = new QTreeWidgetItem();
+                    item->setText(0,listaPlikow[a].nazwa);
+                    item->setText(1,listaPlikow[a].sciezka);
+                    item->setText(2,convertSize(listaPlikow[a].rozmiar));
+
+
+                    listaPlikow.removeAt(a);
+
+                    emit wyszukiwanie(item,liczbaZnalezionych);
+
+                    czyJestDuplikat=true;
+                }
+            }
+            else
+                if(szukaj_po_nazwa==true)
+                {
+                    if (wzor.nazwa == listaPlikow.at(a).nazwa)
+                    {
+                        liczbaZnalezionych++;
+
+                        QTreeWidgetItem* item = new QTreeWidgetItem();
+                        item->setText(0,listaPlikow[a].nazwa);
+                        item->setText(1,listaPlikow[a].sciezka);
+                        item->setText(2,convertSize(listaPlikow[a].rozmiar));
+
+
+                        listaPlikow.removeAt(a);
+
+                        emit wyszukiwanie(item,liczbaZnalezionych);
+
+                        czyJestDuplikat=true;
+                    }
+                }
+            else
+                    if (szukaj_po_rozmiar==true)
+                        if (wzor.rozmiar == listaPlikow.at(a).rozmiar)
+                        {
+                            liczbaZnalezionych++;
+
+                            QTreeWidgetItem* item = new QTreeWidgetItem();
+                            item->setText(0,listaPlikow[a].nazwa);
+                            item->setText(1,listaPlikow[a].sciezka);
+                            item->setText(2,convertSize(listaPlikow[a].rozmiar));
+
+
+                            listaPlikow.removeAt(a);
+
+                            emit wyszukiwanie(item,liczbaZnalezionych);
+
+                            czyJestDuplikat=true;
+                        }
+
+
+           /* if (wzor.nazwa == listaPlikow.at(a).nazwa)
             {
                 //QFileInfo fileInfo;
 
@@ -123,7 +224,9 @@ void thread1::szukaj_duplikatow(QList<szukanie> listaPlikow)
               czyJestDuplikat=true;
 
 
-            }
+            }*/
+           // if (szukaj_po_rozmiar==true && czyJestDuplikat==false)
+
             //listaPlikow.removeAt(i);
         }
         if (czyJestDuplikat==true)
