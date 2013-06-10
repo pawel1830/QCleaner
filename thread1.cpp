@@ -144,8 +144,8 @@ void thread1::szukaj_duplikatow(QList<szukanie> listaPlikow)
             //{
               //  zapis_do_pliku(listaPlikow[a].sciezka);
             //}
-
-            out << listaPlikow[a].sciezka << "\n";
+            if (zapis_listy.isEmpty==false)
+                out << listaPlikow[a].sciezka << "\n";
             if (szukaj_po_nazwa==true && szukaj_po_rozmiar==true)
             {
                 if (wzor.nazwa == listaPlikow.at(a).nazwa && wzor.rozmiar == listaPlikow.at(a).rozmiar)
