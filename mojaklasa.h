@@ -39,7 +39,7 @@ private slots:
 
     void on_usun_clicked();
 
-    void on_Anuluj_clicked();
+   // void on_Anuluj_clicked();
     void menuListyPlikow();
     //void Menu(const QPoint &pos);
 
@@ -49,9 +49,12 @@ private slots:
     void on_settings_clicked();
 
 public slots:
+    void on_Anuluj_clicked();
    void listowanie(QTreeWidgetItem* item,int znaleziono);
    void onProgress(int p, int max);
    void zakonczSzukanie(QString koniec);
+   void displayMessage(QString title,QString message);
+
 signals:
    void wyslijParametry( QList<QString> sciezkiPierwotne);
 };

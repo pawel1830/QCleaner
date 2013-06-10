@@ -43,6 +43,8 @@ signals:
     void wyszukiwanie(QTreeWidgetItem*,int);
     void progress(int p,int max);
     void zakonczSzukanie(QString);
+    void SendMessage(QString title,QString message);
+    void watekStop();
 
 public slots:
     void ustawParametry(QList<QString> sciezkiPierwotne);

@@ -8,6 +8,7 @@
 #include <QMessageBox>
  #include <QDesktopServices>
 #include "settings.h"
+#include <QtMsgHandler>
 
 Ustawienia *settings_window;
 mojaklasa::mojaklasa(QWidget *parent) :
@@ -24,6 +25,8 @@ mojaklasa::mojaklasa(QWidget *parent) :
     connect(this,SIGNAL(wyslijParametry(QList<QString>)),watek,SLOT(ustawParametry(QList<QString>)));
     connect(ui->pushButton_2,SIGNAL(clicked()),ui->listaDuplikatow,SLOT(selectAll()));
     connect(settings_window,SIGNAL(glowne_okno_pokaz(bool)),this,SLOT(setEnabled(bool)));
+    connect(watek,SIGNAL(SendMessage(QString,QString)),this,SLOT(displayMessage(QString,QString)));
+    connect(watek,SIGNAL(watekStop()),this,SLOT(on_Anuluj_clicked()));
 
     ui->usunWszystko->setHidden(true);
     ui->pushButton_2->setHidden(true);
@@ -219,7 +222,7 @@ void mojaklasa::on_Anuluj_clicked()
     ui->Anuluj->setHidden(true);
 
     if (watek->isRunning()==false)
-        QMessageBox::information(this,"koniec roboty","Przeszukiwanie Przerwane przez Użytkownika");
+        QMessageBox::information(this,"koniec roboty","Przeszukiwanie Przerwane..");
     ui->statusBar->showMessage(tr("Przerwane.."),1500);
 }
 void mojaklasa::zakonczSzukanie(QString koniec)
@@ -244,5 +247,12 @@ void mojaklasa::on_settings_clicked()
     //Ustawienia *settings_window = new Ustawienia;
     mojaklasa::setEnabled(false);
     settings_window->show();
+
+}
+void mojaklasa::displayMessage(QString title,QString message)
+
+{
+
+    QMessageBox::warning(this,title,message);
 
 }

@@ -116,11 +116,11 @@ QString convertSize(double size)
 void thread1::szukaj_duplikatow(QList<szukanie> listaPlikow)
 {
     int liczbaZnalezionych = 0;
-    QFile file(zapis_listy);
+ /*   QFile file(zapis_listy);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
             return;
 
-        QTextStream out(&file);
+        QTextStream out(&file);*/
 
 
     int i=0;
@@ -132,6 +132,17 @@ void thread1::szukaj_duplikatow(QList<szukanie> listaPlikow)
 
         bool czyJestDuplikat=false;
         szukanie wzor = listaPlikow.at(i);
+        QFile file(zapis_listy);
+        if (zapis_listy.isEmpty()==false)
+            if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+            {
+                //QMessageBox::warning(this,"Błąd","nie można zapisac listy");
+                emit SendMessage("Błąd","Nie można zapisać listy plików!");
+                emit watekStop();
+            }
+
+
+
         for ( int a=i+1; a<listaPlikow.size() ;a++)
         {
             //szukanie porownanie = listaPlikow.at(a);
@@ -144,8 +155,16 @@ void thread1::szukaj_duplikatow(QList<szukanie> listaPlikow)
             //{
               //  zapis_do_pliku(listaPlikow[a].sciezka);
             //}
-            if (zapis_listy.isEmpty==false)
-                out << listaPlikow[a].sciezka << "\n";
+
+
+            if (zapis_listy.isEmpty()==false)
+
+                {
+                    QTextStream out(&file);
+                    out << listaPlikow[a].sciezka << "\n";
+                    out.flush();
+                }
+
             if (szukaj_po_nazwa==true && szukaj_po_rozmiar==true)
             {
                 if (wzor.nazwa == listaPlikow.at(a).nazwa && wzor.rozmiar == listaPlikow.at(a).rozmiar)

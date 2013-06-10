@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>mojaklasa</string>
+   <string>Qszukacz</string>
   </property>
   <property name="accessibleDescription">
    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kliknij by dodać katalog &lt;/p&gt;&lt;p&gt;do przeszukania&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -21,7 +21,7 @@
     <property name="geometry">
      <rect>
       <x>500</x>
-      <y>430</y>
+      <y>480</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -34,7 +34,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>0</y>
+      <y>6</y>
       <width>98</width>
       <height>31</height>
      </rect>
@@ -49,7 +49,7 @@
       <x>0</x>
       <y>50</y>
       <width>491</width>
-      <height>431</height>
+      <height>461</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -57,6 +57,9 @@
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
+    </property>
+    <property name="autoScroll">
+     <bool>false</bool>
     </property>
     <property name="selectionMode">
      <enum>QAbstractItemView::ExtendedSelection</enum>
@@ -84,9 +87,9 @@
     <property name="geometry">
      <rect>
       <x>500</x>
-      <y>60</y>
+      <y>80</y>
       <width>251</width>
-      <height>361</height>
+      <height>391</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -95,6 +98,9 @@
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="dragEnabled">
+     <bool>true</bool>
+    </property>
     <property name="currentRow">
      <number>-1</number>
     </property>
@@ -102,9 +108,9 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>30</y>
-      <width>241</width>
+      <x>500</x>
+      <y>50</y>
+      <width>111</width>
       <height>21</height>
      </rect>
     </property>
@@ -118,8 +124,8 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>0</y>
+      <x>527</x>
+      <y>9</y>
       <width>221</width>
       <height>23</height>
      </rect>
@@ -135,7 +141,7 @@
     <property name="geometry">
      <rect>
       <x>540</x>
-      <y>430</y>
+      <y>480</y>
       <width>31</width>
       <height>31</height>
      </rect>
@@ -151,7 +157,7 @@
     <property name="geometry">
      <rect>
       <x>410</x>
-      <y>0</y>
+      <y>6</y>
       <width>98</width>
       <height>31</height>
      </rect>
@@ -164,7 +170,7 @@
     <property name="geometry">
      <rect>
       <x>260</x>
-      <y>0</y>
+      <y>6</y>
       <width>131</width>
       <height>31</height>
      </rect>
@@ -180,7 +186,7 @@
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>0</y>
+      <y>6</y>
       <width>131</width>
       <height>31</height>
      </rect>
@@ -195,8 +201,8 @@
    <widget class="QToolButton" name="settings">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>24</y>
+      <x>714</x>
+      <y>46</y>
       <width>28</width>
       <height>29</height>
      </rect>
@@ -209,16 +215,6 @@
       <normaloff>:/icons/settings.png</normaloff>:/icons/settings.png</iconset>
     </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>757</width>
-     <height>27</height>
-    </rect>
-   </property>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="sizePolicy">
