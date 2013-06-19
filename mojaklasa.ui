@@ -2,13 +2,34 @@
 <ui version="4.0">
  <class>mojaklasa</class>
  <widget class="QMainWindow" name="mojaklasa">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>757</width>
+    <width>800</width>
     <height>544</height>
    </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>280</height>
+   </size>
+  </property>
+  <property name="sizeIncrement">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Qszukacz</string>
@@ -17,19 +38,6 @@
    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kliknij by dodać katalog &lt;/p&gt;&lt;p&gt;do przeszukania&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>500</x>
-      <y>480</y>
-      <width>31</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>+</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="skanuj">
     <property name="geometry">
      <rect>
@@ -43,7 +51,103 @@
      <string>skanuj</string>
     </property>
    </widget>
+   <widget class="QProgressBar" name="progressBar">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>512</x>
+      <y>9</y>
+      <width>235</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+    <property name="textVisible">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Anuluj">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>6</y>
+      <width>98</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Anuluj</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="usunWszystko">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>6</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Usuń wszystko</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>6</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string>Zaznacz wszystko</string>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="settings">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>10</y>
+      <width>32</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="icons.qrc">
+      <normaloff>:/icons/settings.png</normaloff>:/icons/settings.png</iconset>
+    </property>
+   </widget>
    <widget class="QTreeWidget" name="listaDuplikatow">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -86,20 +190,26 @@
    <widget class="QListWidget" name="listWidget">
     <property name="geometry">
      <rect>
-      <x>500</x>
+      <x>492</x>
       <y>80</y>
-      <width>251</width>
-      <height>391</height>
+      <width>307</width>
+      <height>397</height>
      </rect>
     </property>
     <property name="sizePolicy">
      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-      <horstretch>5</horstretch>
-      <verstretch>0</verstretch>
+      <horstretch>1</horstretch>
+      <verstretch>1</verstretch>
      </sizepolicy>
     </property>
     <property name="dragEnabled">
      <bool>true</bool>
+    </property>
+    <property name="dragDropMode">
+     <enum>QAbstractItemView::DropOnly</enum>
+    </property>
+    <property name="defaultDropAction">
+     <enum>Qt::ActionMask</enum>
     </property>
     <property name="currentRow">
      <number>-1</number>
@@ -114,105 +224,70 @@
       <height>21</height>
      </rect>
     </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
     <property name="text">
      <string>lista katalogów</string>
-    </property>
-   </widget>
-   <widget class="QProgressBar" name="progressBar">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>527</x>
-      <y>9</y>
-      <width>221</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="value">
-     <number>0</number>
-    </property>
-    <property name="textVisible">
-     <bool>true</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="usun">
     <property name="geometry">
      <rect>
-      <x>540</x>
+      <x>544</x>
       <y>480</y>
-      <width>31</width>
-      <height>31</height>
+      <width>32</width>
+      <height>32</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>25</width>
+      <height>25</height>
+     </size>
     </property>
     <property name="text">
      <string>-</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="Anuluj">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
+   <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>6</y>
-      <width>98</width>
-      <height>31</height>
+      <x>500</x>
+      <y>480</y>
+      <width>32</width>
+      <height>32</height>
      </rect>
     </property>
-    <property name="text">
-     <string>Anuluj</string>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
-   </widget>
-   <widget class="QPushButton" name="usunWszystko">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>6</y>
-      <width>131</width>
-      <height>31</height>
-     </rect>
+    <property name="minimumSize">
+     <size>
+      <width>25</width>
+      <height>25</height>
+     </size>
     </property>
-    <property name="text">
-     <string>Usuń wszystko</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_2">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>6</y>
-      <width>131</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
+    <property name="maximumSize">
+     <size>
+      <width>32</width>
+      <height>16777215</height>
+     </size>
     </property>
     <property name="text">
-     <string>Zaznacz wszystko</string>
-    </property>
-   </widget>
-   <widget class="QToolButton" name="settings">
-    <property name="geometry">
-     <rect>
-      <x>714</x>
-      <y>46</y>
-      <width>28</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset resource="icons.qrc">
-      <normaloff>:/icons/settings.png</normaloff>:/icons/settings.png</iconset>
+     <string>+</string>
     </property>
    </widget>
   </widget>
@@ -250,6 +325,14 @@
    </property>
    <property name="toolTip">
     <string>Otwórz lokalizacje pliku</string>
+   </property>
+  </action>
+  <action name="actionOtworz">
+   <property name="text">
+    <string>Otwórz</string>
+   </property>
+   <property name="toolTip">
+    <string>Otwórz plik</string>
    </property>
   </action>
  </widget>

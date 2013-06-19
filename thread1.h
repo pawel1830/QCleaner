@@ -50,7 +50,7 @@ public slots:
     void ustawParametry(QList<QString> sciezkiPierwotne);
     //QList<szukanie> szukanieFaza1(QList<QString> sciezkiKatalogow, bool podkatalog);
 private:
-   void zapis_do_pliku(QString linia);
+  // void zapis_do_pliku(QString linia);
 };
 #endif // THREAD1_H
 

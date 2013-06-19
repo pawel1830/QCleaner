@@ -1,6 +1,7 @@
 #include "mojaklasa.h"
 #include <QApplication>
 #include "thread1.h"
+
 //QList<QString> listaSciezek;
 int main(int argc, char *argv[])
 {

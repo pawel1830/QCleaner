@@ -21,7 +21,7 @@ private:
     void writeSettings();
 
 signals:
-    void glowne_okno_pokaz(bool);
+   // void glowne_okno_pokaz(bool);
 private slots:
 
     void on_buttonBox_accepted();
@@ -30,10 +30,16 @@ private slots:
     void on_lista_plikow_toggled(bool checked);
     void on_sciezka_zapisz_przycisk_clicked();
     void on_sciezka_szuk_przycisk_clicked();
+    void on_pushButton_clicked();
+    void WczytajUstawienia();
 
+public slots:
+    void PrzywrocDomyslne();
 };
 
 #endif // DIALOG_H
+
+
 
 
 

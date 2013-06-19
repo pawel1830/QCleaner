@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = skanowanie
+TARGET = Qszukacz
 TEMPLATE = app
 
 
@@ -23,6 +23,9 @@ HEADERS  += mojaklasa.h \
 
 FORMS    += mojaklasa.ui \
 	settings.ui
-
 RESOURCES += \
     icons.qrc
+VERSION = 0.9.1
+QMAKE_TARGET_PRODUCT = QSzukacz
+QMAKE_TARGET_DESCRIPTION = Qszukacz
+QMAKE_TARGET_COPYRIGHT = "Paweł Górka")

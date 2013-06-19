@@ -30,6 +30,7 @@ private:
     QMenu *menu;
 
 
+
     
 private slots:
     void on_pushButton_clicked();
@@ -45,8 +46,12 @@ private slots:
 
     //void on_pushButton_2_clicked();
     void przejdzFolder();
+     void openFile();
 
     void on_settings_clicked();
+    void resizeEvent(QResizeEvent *);
+
+
 
 public slots:
     void on_Anuluj_clicked();
@@ -57,6 +62,7 @@ public slots:
 
 signals:
    void wyslijParametry( QList<QString> sciezkiPierwotne);
+ //  void resize();
 };
 
 #endif // MOJAKLASA_H

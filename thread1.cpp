@@ -1,6 +1,4 @@
 #include "thread1.h"
-#include <QtCore>
-#include <QDebug>
 #include <QTreeWidgetItem>
 #include "mojaklasa.h"
 #include <QMessageBox>
@@ -37,7 +35,7 @@ void thread1::ustawParametry(QList<QString> sciezkiPierwotne)
         dir.setSorting(QDir::Size | QDir::Reversed);
 
    */
-void thread1::zapis_do_pliku(QString linia)
+/*void thread1::zapis_do_pliku(QString linia)
 {
     if (zapis_listy.isEmpty()==false)
     {
@@ -51,8 +49,7 @@ void thread1::zapis_do_pliku(QString linia)
 
          file.close();
     }
-}
-
+}*/
 void thread1::tworzListePlikow(QDir dir)
 {
 
@@ -264,7 +261,7 @@ void thread1::szukaj_duplikatow(QList<szukanie> listaPlikow)
 
     }
     emit progress(i,i);
-    emit zakonczSzukanie("Zakończono..");
+    emit zakonczSzukanie(QString::fromUtf8("Zakończono.."));
 
 }
 void thread1::run()
