@@ -7,6 +7,7 @@ Basically what it does is searching for file duplicates
 
 ## How to compile?
 qmake -o Makefile skanowanie.pro
+
 make
 
 PROJECT DISCONTINUED!
