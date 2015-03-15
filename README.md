@@ -10,5 +10,4 @@ qmake -o Makefile skanowanie.pro
 
 make
 
-PROJECT DISCONTINUED!
-=====================
+
