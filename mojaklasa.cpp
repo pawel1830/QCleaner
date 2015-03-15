@@ -64,39 +64,12 @@ mojaklasa::~mojaklasa()
 {
     delete ui;
 }
-void mojaklasa::resizeEvent(QResizeEvent *)
-{
-    //zmiana rozmiaru okna
-    int x = mojaklasa::size().width();
-    int y = mojaklasa::size().height();
-    ui->listaDuplikatow->resize(x-309,y-83);
-   // ui->listWidget->move(x-307,ui->listWidget->pos().y());
-    ui->label->move(x-300,50);
-    ui->listWidget->resize(307,y-150);
-    ui->listWidget->move(x-310,80);
-    ui->pushButton->move(x-300,y-65);
-    ui->usun->move(x-255,y-65);
-    ui->settings->move(x-40,10);
-    ui->progressBar->resize(x-565,23);
-   // ui->czescKatalogow->setGeometry(QRect(x_g,y_g,g_w,g_h));
 
-}
 
 void mojaklasa::menuListyPlikow()
 {
     int zaznDoUsun = ui->listaDuplikatow->selectedItems().size();
-   /* QFile file;
 
-    file.setFileName(ui->listaDuplikatow->selectedItems().first()->text(1));
-    if (file.remove()== true)
-    {
-
-        QTreeWidgetItem *item = ui->listaDuplikatow->currentItem();
-        int i = ui->listaDuplikatow->indexOfTopLevelItem(item);
-        ui->listaDuplikatow->takeTopLevelItem(i);
-           QMessageBox::information(this,"Usuwanie",QString::number(zaznDoUsun));
-
-    }*/
 
 
     if (zaznDoUsun>0)

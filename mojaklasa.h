@@ -21,7 +21,7 @@ public:
     explicit mojaklasa(QWidget *parent = 0);
     ~mojaklasa();
    thread1 *watek;
-   //Ustawienia *settings_window = new Ustawienia;
+
 
 
 private:
@@ -29,27 +29,15 @@ private:
     QAction *rightClickMenu;
     QMenu *menu;
 
-
-
-    
 private slots:
     void on_pushButton_clicked();
-
     void on_skanuj_clicked();
-
-
     void on_usun_clicked();
-
-   // void on_Anuluj_clicked();
     void menuListyPlikow();
-    //void Menu(const QPoint &pos);
-
-    //void on_pushButton_2_clicked();
     void przejdzFolder();
-     void openFile();
-
+    void openFile();
     void on_settings_clicked();
-    void resizeEvent(QResizeEvent *);
+
 
 
 
