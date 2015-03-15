@@ -1,7 +1,7 @@
-What is Qszukacz?
+What is QCleaner?
 =================
 
-Qszukacz is just my small attempt to learn Qt.
+QCleaner is just my small attempt to learn Qt.
 
 Basically what it does is searching for file duplicates
 
