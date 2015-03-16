@@ -42,7 +42,7 @@ private slots:
 
 
 public slots:
-    void on_Anuluj_clicked();
+   void on_Anuluj_clicked();
    void listowanie(QTreeWidgetItem* item,int znaleziono);
    void onProgress(int p, int max);
    void zakonczSzukanie(QString koniec);
@@ -50,7 +50,6 @@ public slots:
 
 signals:
    void wyslijParametry( QList<QString> sciezkiPierwotne);
- //  void resize();
 };
 
 #endif // MOJAKLASA_H

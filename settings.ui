@@ -43,7 +43,7 @@
   <property name="sizeGripEnabled">
    <bool>false</bool>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
+  <widget class="QDialogButtonBox" name="buttonsSave">
    <property name="geometry">
     <rect>
      <x>200</x>
@@ -181,11 +181,20 @@
    <widget class="QGroupBox" name="kryt_szukania">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>20</y>
-      <width>171</width>
-      <height>111</height>
+      <x>240</x>
+      <y>10</y>
+      <width>156</width>
+      <height>126</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="toolTipDuration">
+     <number>-1</number>
     </property>
     <property name="layoutDirection">
      <enum>Qt::LeftToRight</enum>
@@ -206,7 +215,7 @@
      <string>Kryteria wyszukiwania</string>
     </property>
     <property name="alignment">
-     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     <set>Qt::AlignBottom|Qt::AlignJustify</set>
     </property>
     <property name="flat">
      <bool>false</bool>
@@ -244,12 +253,22 @@
      </property>
     </widget>
    </widget>
+   <zorder>szuk_w_podk</zorder>
+   <zorder>lista_plikow</zorder>
+   <zorder>l_sciezk_zapis</zorder>
+   <zorder>line_sciezk_zapis</zorder>
+   <zorder>sciezka_zapisz_przycisk</zorder>
+   <zorder>l_sciezk_szuk</zorder>
+   <zorder>line_sciezk_szuk</zorder>
+   <zorder>sciezka_szuk_przycisk</zorder>
+   <zorder>kryt_szukania</zorder>
+   <zorder>horizontalLayoutWidget</zorder>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="przywDomyslne">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>340</y>
+     <x>20</x>
+     <y>330</y>
      <width>181</width>
      <height>24</height>
     </rect>
@@ -268,7 +287,7 @@
  </resources>
  <connections>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>buttonsSave</sender>
    <signal>rejected()</signal>
    <receiver>Ustawienia</receiver>
    <slot>reject()</slot>
@@ -284,7 +303,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>buttonsSave</sender>
    <signal>accepted()</signal>
    <receiver>Ustawienia</receiver>
    <slot>accept()</slot>

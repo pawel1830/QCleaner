@@ -2,8 +2,7 @@
 #define THREAD1_H
 #include <QtCore>
 #include <QTreeWidgetItem>
-//#include "ui_mojaklasa.h"
-//#include "mojaklasa.h"
+
 
 
 class thread1 : public
@@ -19,16 +18,9 @@ public:
         QString nazwa;
         double rozmiar;
     };
- //   QList<szukanie> szukanieFaza1(
-            //*QList<QString> sciezkiKatalogow,
-  //           bool podkatalog);
-
     void run();
     bool Stop;
-    //void listuj_kat(QString nazwa);
-    //void listuj(QString nazwa);
     void tworzListePlikow(QDir dir);
-  //  void sprawdzenie();
     void szukaj_duplikatow(QList<szukanie> listaPlikow);
 
     QList<QString>sciezki;
@@ -48,9 +40,7 @@ signals:
 
 public slots:
     void ustawParametry(QList<QString> sciezkiPierwotne);
-    //QList<szukanie> szukanieFaza1(QList<QString> sciezkiKatalogow, bool podkatalog);
-private:
-  // void zapis_do_pliku(QString linia);
+
 };
 #endif // THREAD1_H
 
